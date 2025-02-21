@@ -21,11 +21,10 @@ class _ManageProfileViewState extends State<ManageProfileView> {
   bool _isLoading = true;
 
   @override
-
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    if(index == 4){
+    if (index == 4) {
       setState(() {
         logout(context);
       });
@@ -55,7 +54,8 @@ class _ManageProfileViewState extends State<ManageProfileView> {
 
   Future<void> _fetchProfiles() async {
     try {
-      List<Map<String, dynamic>> profiles = await _profileServices.fetchChildProfilesForCurrentUser();
+      List<Map<String, dynamic>> profiles =
+          await _profileServices.fetchChildProfilesForCurrentUser();
       setState(() {
         _profiles = profiles;
         _isLoading = false;
@@ -71,12 +71,7 @@ class _ManageProfileViewState extends State<ManageProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: const Color.fromARGB(255, 202, 126, 33),
-        ),
         backgroundColor: const Color.fromARGB(255, 234, 235, 235),
         title: Text("Profiles"),
         actions: [
@@ -103,7 +98,9 @@ class _ManageProfileViewState extends State<ManageProfileView> {
                     // PROFILE PICTURE
                     child: Column(
                       children: [
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Image.asset(
                           "Assets/SleepyFoxLogo512.png",
                           width: 100,
@@ -112,18 +109,23 @@ class _ManageProfileViewState extends State<ManageProfileView> {
                         _isLoading
                             ? CircularProgressIndicator()
                             : Column(
-                          children: [
-                            ZaksPersonalTextStyle(
-                              text: _profiles.isNotEmpty ? _profiles[0]['name'] : 'No Profile',
-                              textStyle: TextStyle(fontSize: 40),
-                            ),
-                            Container(height: 0,),
-                            ZaksPersonalTextStyle(
-                              text: "Age: ${_profiles.isNotEmpty ? _profiles[0]['age'].toString() : 'No Age'}",
-                              textStyle: TextStyle(fontSize: 30),
-                            ),
-                          ],
-                        ),
+                                children: [
+                                  ZaksPersonalTextStyle(
+                                    text: _profiles.isNotEmpty
+                                        ? _profiles[0]['name']
+                                        : 'No Profile',
+                                    textStyle: TextStyle(fontSize: 40),
+                                  ),
+                                  Container(
+                                    height: 0,
+                                  ),
+                                  ZaksPersonalTextStyle(
+                                    text:
+                                        "Age: ${_profiles.isNotEmpty ? _profiles[0]['age'].toString() : 'No Age'}",
+                                    textStyle: TextStyle(fontSize: 30),
+                                  ),
+                                ],
+                              ),
                       ],
                     ),
                   ),
@@ -131,9 +133,10 @@ class _ManageProfileViewState extends State<ManageProfileView> {
               ),
             ),
 
-
             // Decorative Bar
-           SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
 
             Padding(
               padding: const EdgeInsets.all(8.2),
@@ -144,7 +147,9 @@ class _ManageProfileViewState extends State<ManageProfileView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ZaksPersonalTextStyle(text: 'Sleep Analysis', textStyle: TextStyle(fontSize: 30)),
+                      ZaksPersonalTextStyle(
+                          text: 'Sleep Analysis',
+                          textStyle: TextStyle(fontSize: 30)),
                       SizedBox(height: 10),
                       Container(
                         padding: EdgeInsets.all(16),
@@ -155,8 +160,8 @@ class _ManageProfileViewState extends State<ManageProfileView> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text('Average Sleep Duration',
-                                style:
-                                TextStyle(fontSize: 20, color: Colors.black)),
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black)),
                             SizedBox(height: 5),
                             Text('7.5 hours',
                                 style: TextStyle(
@@ -168,7 +173,9 @@ class _ManageProfileViewState extends State<ManageProfileView> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                ZaksPersonalTextStyle(text: 'Current Mood:', textStyle: TextStyle(fontSize: 20)),
+                                ZaksPersonalTextStyle(
+                                    text: 'Current Mood:',
+                                    textStyle: TextStyle(fontSize: 20)),
                                 Text('Missing Khalid :(')
                               ],
                             ),
@@ -187,9 +194,13 @@ class _ManageProfileViewState extends State<ManageProfileView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 100,),
-                    GuideButton(text: 'Delete Profile', onPressed: (){}),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 100,
+                    ),
+                    GuideButton(text: 'Delete Profile', onPressed: () {}),
+                    SizedBox(
+                      height: 5,
+                    ),
                   ],
                 ),
               ),
@@ -224,6 +235,7 @@ class _ManageProfileViewState extends State<ManageProfileView> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
+
   Widget _buildNavItem(IconData icon, String label, int index) {
     bool isSelected = _selectedIndex == index;
 
@@ -235,7 +247,8 @@ class _ManageProfileViewState extends State<ManageProfileView> {
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: isSelected ? Colors.amber.withOpacity(0.2) : Colors.transparent,
+          color:
+              isSelected ? Colors.amber.withOpacity(0.2) : Colors.transparent,
         ),
         child: SizedBox(
           height: 56, // OVERFLOW FIX
@@ -249,7 +262,9 @@ class _ManageProfileViewState extends State<ManageProfileView> {
                   duration: Duration(milliseconds: 300),
                   curve: Curves.easeOut,
                   height: isSelected ? 28 : 24, // Adjusts size without scaling
-                  child: Icon(icon, color: isSelected ? Colors.amber.shade700 : Colors.black, size: isSelected ? 28 : 24),
+                  child: Icon(icon,
+                      color: isSelected ? Colors.amber.shade700 : Colors.black,
+                      size: isSelected ? 28 : 24),
                 ),
               ),
               Positioned(
@@ -259,7 +274,8 @@ class _ManageProfileViewState extends State<ManageProfileView> {
                   curve: Curves.easeInOut,
                   style: TextStyle(
                     fontSize: 12,
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal,
                     color: isSelected ? Colors.amber.shade700 : Colors.black,
                   ),
                   child: Text(label),
@@ -272,4 +288,3 @@ class _ManageProfileViewState extends State<ManageProfileView> {
     );
   }
 }
-

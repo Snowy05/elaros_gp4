@@ -107,7 +107,7 @@ class _DashboardViewState extends State<DashboardView> {
                       child: InfoContainer(
                         title: 'Sleep Cycle',
                         subtitle: 'Deep & REM Sleep',
-                        imagePath: '',
+                        imagePath: 'Assets/ProfilePicMale.png',
                       ),
                     ),
                     Padding(
@@ -115,7 +115,7 @@ class _DashboardViewState extends State<DashboardView> {
                       child: InfoContainer(
                         title: 'Healthy Habits',
                         subtitle: 'Better Rest Routine',
-                        imagePath: '',
+                        imagePath: 'Assets/ProfPicKid.png',
                       ),
                     ),
                   ],

@@ -5,7 +5,7 @@ import 'package:elaros_gp4/View/Profiles/select_profile_view.dart';
 import 'package:elaros_gp4/View/Questionaire/questionaire_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'View/Profiles/Manage Profile/manage_pofile_view.dart';
+import 'View/Profiles/Manage Profile/manage_profile_view.dart';
 import 'firebase_options.dart';
 import 'View/Login/login_view.dart';
 import 'View/Register/register_view.dart';

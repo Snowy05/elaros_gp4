@@ -24,7 +24,7 @@ class _SleepTrackingState extends State<SleepTracking> {
     _fetchProfiles();
   }
 
- Future<void> _fetchProfiles() async {
+  Future<void> _fetchProfiles() async {
     try {
       List<Map<String, dynamic>> profiles =
           await _profileServices.fetchChildProfilesForCurrentUser();
@@ -45,8 +45,6 @@ class _SleepTrackingState extends State<SleepTracking> {
       });
     }
   }
-
-  
 
   final TextEditingController _bedtimeController = TextEditingController();
   final TextEditingController _wakeUpController = TextEditingController();
@@ -72,8 +70,8 @@ class _SleepTrackingState extends State<SleepTracking> {
       );
 
       if (pickedTime != null) {
-        DateTime dateTime = DateTime(
-            pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, pickedTime.minute);
+        DateTime dateTime = DateTime(pickedDate.year, pickedDate.month,
+            pickedDate.day, pickedTime.hour, pickedTime.minute);
         controller.text = DateFormat('dd/MM/yyyy HH:mm').format(dateTime);
       }
     }
@@ -88,9 +86,8 @@ class _SleepTrackingState extends State<SleepTracking> {
       print("Before filtering: $naps");
 
       // Filter out empty naps (Ensure valid start and end times)
-      List<Map<String, dynamic>> formattedNaps = naps
-          .where((nap) => nap['start'] != '' && nap['end'] != '')
-          .toList();
+      List<Map<String, dynamic>> formattedNaps =
+          naps.where((nap) => nap['start'] != '' && nap['end'] != '').toList();
 
       // Debugging: Print the naps list after filtering
       print("After filtering: $formattedNaps");
@@ -108,18 +105,16 @@ class _SleepTrackingState extends State<SleepTracking> {
         'bedtime': _bedtimeController.text,
         'wakeUp': _wakeUpController.text,
         'awakenings': awakenings,
-        'naps': formattedNaps, 
+        'naps': formattedNaps,
         'notes': _notesController.text,
         'timestamp': FieldValue.serverTimestamp(),
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sleep record saved successfully'))
-      );
+          const SnackBar(content: Text('Sleep record saved successfully')));
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to save: $e'))
-      );
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Failed to save: $e')));
     }
   }
 
@@ -148,7 +143,7 @@ class _SleepTrackingState extends State<SleepTracking> {
     });
   }
 
-    int _selectedIndex = 0;
+  int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     if (index != 2) {
@@ -162,12 +157,8 @@ class _SleepTrackingState extends State<SleepTracking> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: const Color.fromARGB(255, 202, 126, 33),
-        ),
         backgroundColor: const Color.fromARGB(255, 234, 235, 235),
-        title: Text("Dashboard"),
+        title: Text("Sleep Tracker"),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 16),
@@ -188,7 +179,10 @@ class _SleepTrackingState extends State<SleepTracking> {
               padding: const EdgeInsets.all(10),
               child: const Text(
                 "Profile Selection",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.amber),
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.amber),
               ),
             ),
             if (_isLoading)
@@ -197,7 +191,8 @@ class _SleepTrackingState extends State<SleepTracking> {
               const Text('No profiles available')
             else
               DropdownButtonFormField<String>(
-                value: _profiles.any((profile) => profile['name'] == _selectedProfileId)
+                value: _profiles
+                        .any((profile) => profile['name'] == _selectedProfileId)
                     ? _selectedProfileId
                     : null,
                 decoration: InputDecoration(
@@ -225,7 +220,10 @@ class _SleepTrackingState extends State<SleepTracking> {
               ),
             const Text(
               "Sleep Quality",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.amber),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.amber),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -281,34 +279,36 @@ class _SleepTrackingState extends State<SleepTracking> {
                 onPressed: _saveSleepRecord,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 ),
                 child: const Text(
                   "Save Sleep Record",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
               ),
             ),
           ],
         ),
       ),
-
       bottomNavigationBar: CustomBottomNavBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: const Color.fromARGB(255, 233, 166, 90),
-          shape: const CircleBorder(),
-          child: Image.asset(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: const Color.fromARGB(255, 233, 166, 90),
+        shape: const CircleBorder(),
+        child: Image.asset(
           "Assets/SleepyFoxLogo512.png",
           width: 40,
           height: 40,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          
     );
   }
 
@@ -324,9 +324,13 @@ class _SleepTrackingState extends State<SleepTracking> {
         margin: const EdgeInsets.symmetric(horizontal: 8),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.amber[400] : Colors.transparent, // Only amber when selected
+          color: isSelected
+              ? Colors.amber[400]
+              : Colors.transparent, // Only amber when selected
           borderRadius: BorderRadius.circular(12),
-          border: isSelected ? Border.all(color: Colors.amber) : null, // Optional: border around the selected button
+          border: isSelected
+              ? Border.all(color: Colors.amber)
+              : null, // Optional: border around the selected button
         ),
         child: Column(
           children: [
@@ -334,14 +338,18 @@ class _SleepTrackingState extends State<SleepTracking> {
               emoji,
               style: TextStyle(
                 fontSize: 50,
-                color: isSelected ? Colors.white : Colors.black, // Amber color for selected
+                color: isSelected
+                    ? Colors.white
+                    : Colors.black, // Amber color for selected
               ),
             ),
             Text(
               label,
               style: TextStyle(
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected ? Colors.white : Colors.black, // Change label color when selected
+                color: isSelected
+                    ? Colors.white
+                    : Colors.black, // Change label color when selected
               ),
             ),
           ],
@@ -366,7 +374,11 @@ class _SleepTrackingState extends State<SleepTracking> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.amber)),
+        Text(title,
+            style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.amber)),
         IconButton(icon: const Icon(Icons.add), onPressed: onAdd),
       ],
     );
@@ -408,9 +420,13 @@ class _AwakeningEntryState extends State<AwakeningEntry> {
         margin: const EdgeInsets.symmetric(horizontal: 8),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.amber[400] : Colors.transparent, // Only amber when selected
+          color: isSelected
+              ? Colors.amber[400]
+              : Colors.transparent, // Only amber when selected
           borderRadius: BorderRadius.circular(12),
-          border: isSelected ? Border.all(color: Colors.amber) : null, // Optional: border around the selected button
+          border: isSelected
+              ? Border.all(color: Colors.amber)
+              : null, // Optional: border around the selected button
         ),
         child: Column(
           children: [
@@ -418,14 +434,18 @@ class _AwakeningEntryState extends State<AwakeningEntry> {
               emoji,
               style: TextStyle(
                 fontSize: 50,
-                color: isSelected ? Colors.white : Colors.black, // Amber color for selected
+                color: isSelected
+                    ? Colors.white
+                    : Colors.black, // Amber color for selected
               ),
             ),
             Text(
               reason,
               style: TextStyle(
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected ? Colors.white : Colors.black, // Change label color when selected
+                color: isSelected
+                    ? Colors.white
+                    : Colors.black, // Change label color when selected
               ),
             ),
           ],
@@ -458,7 +478,6 @@ class _AwakeningEntryState extends State<AwakeningEntry> {
   }
 }
 
-
 class NapEntry extends StatefulWidget {
   final Function(Map<String, dynamic>) onChanged;
 
@@ -468,54 +487,53 @@ class NapEntry extends StatefulWidget {
   _NapEntryState createState() => _NapEntryState();
 }
 
-  class _NapEntryState extends State<NapEntry> {
-    final TextEditingController startController = TextEditingController();
-    final TextEditingController endController = TextEditingController();
+class _NapEntryState extends State<NapEntry> {
+  final TextEditingController startController = TextEditingController();
+  final TextEditingController endController = TextEditingController();
 
-    @override
-    void initState() {
-      super.initState();
-      startController.addListener(_update);
-      endController.addListener(_update);
-    }
-
-    @override
-    void dispose() {
-      startController.removeListener(_update);
-      endController.removeListener(_update);
-      startController.dispose();
-      endController.dispose();
-      super.dispose();
-    }
-
-    void _update() {
-      widget.onChanged({
-        'start': startController.text.isNotEmpty ? startController.text : 'N/A',
-        'end': endController.text.isNotEmpty ? endController.text : 'N/A',
-      });
-    }
-
-    @override
-    Widget build(BuildContext context) {
-      return Column(
-        children: [
-          TimeInputField(label: "Start", controller: startController),
-          TimeInputField(label: "End", controller: endController),
-          const Divider(),
-        ],
-      );
-    }
+  @override
+  void initState() {
+    super.initState();
+    startController.addListener(_update);
+    endController.addListener(_update);
   }
 
-  Widget _greyContainer(Widget child) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.only(top: 8), // Adds some spacing
-      decoration: BoxDecoration(
-        color: Colors.white, // Darker grey
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: child,
+  @override
+  void dispose() {
+    startController.removeListener(_update);
+    endController.removeListener(_update);
+    startController.dispose();
+    endController.dispose();
+    super.dispose();
+  }
+
+  void _update() {
+    widget.onChanged({
+      'start': startController.text.isNotEmpty ? startController.text : 'N/A',
+      'end': endController.text.isNotEmpty ? endController.text : 'N/A',
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TimeInputField(label: "Start", controller: startController),
+        TimeInputField(label: "End", controller: endController),
+        const Divider(),
+      ],
     );
   }
+}
 
+Widget _greyContainer(Widget child) {
+  return Container(
+    padding: const EdgeInsets.all(10),
+    margin: const EdgeInsets.only(top: 8), // Adds some spacing
+    decoration: BoxDecoration(
+      color: Colors.white, // Darker grey
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: child,
+  );
+}

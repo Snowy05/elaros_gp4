@@ -51,7 +51,8 @@ class _SelectProfileViewState extends State<SelectProfileView> {
 
   Future<void> _fetchProfiles() async {
     try {
-      List<Map<String, dynamic>> profiles = await _profileServices.fetchChildProfilesForCurrentUser();
+      List<Map<String, dynamic>> profiles =
+          await _profileServices.fetchChildProfilesForCurrentUser();
       setState(() {
         _profiles = profiles;
         _isLoading = false;
@@ -69,10 +70,6 @@ class _SelectProfileViewState extends State<SelectProfileView> {
     return Scaffold(
       backgroundColor: Colors.white70,
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: const Color.fromARGB(255, 202, 126, 33),
-        ),
         backgroundColor: const Color.fromARGB(255, 234, 235, 235),
         title: Text("Profiles"),
         actions: [
@@ -116,7 +113,8 @@ class _SelectProfileViewState extends State<SelectProfileView> {
                           return;
                         }
 
-                        final String? email = FirebaseAuth.instance.currentUser?.email;
+                        final String? email =
+                            FirebaseAuth.instance.currentUser?.email;
                         if (email == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('User not logged in.')),
@@ -124,19 +122,24 @@ class _SelectProfileViewState extends State<SelectProfileView> {
                           return;
                         }
 
-                        await _profileServices.addChildProfile(name, age, email);
+                        await _profileServices.addChildProfile(
+                            name, age, email);
                         await _fetchProfiles();
 
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Profile created successfully!')),
+                          SnackBar(
+                              content: Text('Profile created successfully!')),
                         );
                       },
                     ),
                     SizedBox(height: 50),
 
-                   //custom text widget found in /widget
-                   TextInputStyle(controller: nameController, labelText: "Name"),
-                    SizedBox(height: 10,),
+                    //custom text widget found in /widget
+                    TextInputStyle(
+                        controller: nameController, labelText: "Name"),
+                    SizedBox(
+                      height: 10,
+                    ),
                     TextInputStyle(controller: ageController, labelText: "Age")
                   ],
                 ),
@@ -147,14 +150,16 @@ class _SelectProfileViewState extends State<SelectProfileView> {
               child: _isLoading
                   ? Center(child: CircularProgressIndicator())
                   : _profiles.isEmpty
-                  ? Center(child: Text("Profile Not Found"))
-                  : Column(
-                children: _profiles.map((profile) {
-                  return _profileCard(profile['name'], 'Assets/FemaleFoxPic.png', () {
-                    Navigator.pushNamed(context, '/ManageProfileView');
-                  });
-                }).toList(),
-              ),
+                      ? Center(child: Text("Profile Not Found"))
+                      : Column(
+                          children: _profiles.map((profile) {
+                            return _profileCard(
+                                profile['name'], 'Assets/FemaleFoxPic.png', () {
+                              Navigator.pushNamed(
+                                  context, '/ManageProfileView');
+                            });
+                          }).toList(),
+                        ),
             ),
           ],
         ),
@@ -187,7 +192,6 @@ class _SelectProfileViewState extends State<SelectProfileView> {
     );
   }
 
-
   Widget _profileCard(String title, String imagePath, VoidCallback? onTap) {
     return Card(
       child: ListTile(
@@ -201,7 +205,6 @@ class _SelectProfileViewState extends State<SelectProfileView> {
     );
   }
 
-
   Widget _buildNavItem(IconData icon, String label, int index) {
     bool isSelected = _selectedIndex == index;
 
@@ -213,7 +216,8 @@ class _SelectProfileViewState extends State<SelectProfileView> {
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: isSelected ? Colors.amber.withOpacity(0.2) : Colors.transparent,
+          color:
+              isSelected ? Colors.amber.withOpacity(0.2) : Colors.transparent,
         ),
         child: SizedBox(
           height: 56, // OVERFLOW FIX
@@ -227,7 +231,9 @@ class _SelectProfileViewState extends State<SelectProfileView> {
                   duration: Duration(milliseconds: 300),
                   curve: Curves.easeOut,
                   height: isSelected ? 28 : 24, // Adjusts size without scaling
-                  child: Icon(icon, color: isSelected ? Colors.amber.shade700 : Colors.black, size: isSelected ? 28 : 24),
+                  child: Icon(icon,
+                      color: isSelected ? Colors.amber.shade700 : Colors.black,
+                      size: isSelected ? 28 : 24),
                 ),
               ),
               Positioned(
@@ -237,7 +243,8 @@ class _SelectProfileViewState extends State<SelectProfileView> {
                   curve: Curves.easeInOut,
                   style: TextStyle(
                     fontSize: 12,
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal,
                     color: isSelected ? Colors.amber.shade700 : Colors.black,
                   ),
                   child: Text(label),
@@ -249,5 +256,4 @@ class _SelectProfileViewState extends State<SelectProfileView> {
       ),
     );
   }
-
 }
