@@ -1,0 +1,2 @@
+/Users/a44748/Desktop/elaros_gp4/android/app/.cxx/Debug/434n1y72/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/a44748/Desktop/elaros_gp4/android/app/.cxx/Debug/434n1y72/armeabi-v7a/CMakeFiles/rebuild_cache.dir

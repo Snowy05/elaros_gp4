@@ -1,0 +1,2 @@
+C:/Users/sando/StudioProjects/elaros_gp4_/android/app/.cxx/Debug/3m6r1b4d/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/sando/StudioProjects/elaros_gp4_/android/app/.cxx/Debug/3m6r1b4d/armeabi-v7a/CMakeFiles/rebuild_cache.dir

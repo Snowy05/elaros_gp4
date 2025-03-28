@@ -31,17 +31,26 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
-  firebase_core: 
+  firebase_core: ^3.12.0
+  cloud_firestore: ^5.6.4
   firebase_auth:
+
+  intl:
+  lottie: ^3.3.1
+  fl_chart:
+  syncfusion_flutter_charts: ^29.1.33
+  audioplayers: ^6.4.0
+  shared_preferences: ^2.5.2
+
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.3
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -49,6 +58,21 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  flutter_native_splash: 2.4.4
+  mockito: ^5.4.5
+  build_runner: ^2.4.15
+  
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/SleepyFoxLogo512.png
+  android_12:
+    image: assets/SleepyFoxLogo512.png
+    icon_background_color: "#ffffff"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/SleepyFoxAppIcon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,7 +87,45 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - Assets/SleepyFoxLogo512.png
+    - assets/SleepyFoxLogo512.png
+    - assets/ProfPicKid.png
+    - assets/ProfilePicMale.png
+    - assets/ProfilePicGirl.png
+    - assets/FoxMascProfPic.png
+    - assets/fox.pfp.png
+    - assets/FemaleFoxPic.png
+    - assets/GirlSleep.jpeg
+    - assets/moonbackground.png
+    - assets/900w-xy8Cv39_lA0.png
+    - assets/wp11179213.png
+    - assets/blue-phone-0njfrpcuzj98bp30.jpg
+    - assets/foxasleepdashb.png
+    - assets/rabbitreading.png
+    - assets/rabbitreadingfix.png
+    - assets/foxasleepdashbfix.png
+    - assets/childprofiledash.png
+    - assets/childgirlprofiledash.png
+    - assets/bearstory1.png
+    - assets/OIP.jpg
+    - assets/backgroundmusic.mp3
+    - assets/cena.mp3
+    - assets/profileboy.png
+    - assets/Sparrow1.png
+    - assets/SleepyFoxStory1.png
+    - assets/Peacock1.png
+    - assets/OwlStory1.png
+    - assets/FoxStory3.png
+    - assets/Catstory4.png
+    - assets/CatStory3.png
+    - assets/CatStory2.png
+    - assets/CatStory1.png
+    - assets/BearStoryWalking.png
+    - assets/BearStory2.png
+    - assets/BearStory3.png
+    - assets/Dog1.png
+    - assets/Dog2.png
+    - assets/Dog3.png
+    - assets/Sq2.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

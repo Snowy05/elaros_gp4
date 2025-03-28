@@ -1,0 +1,2 @@
+C:/Users/Khantamah/StudioProjects/elaros_group_work/elaros_gp4/android/app/.cxx/Debug/142w4q12/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/Khantamah/StudioProjects/elaros_group_work/elaros_gp4/android/app/.cxx/Debug/142w4q12/x86_64/CMakeFiles/rebuild_cache.dir

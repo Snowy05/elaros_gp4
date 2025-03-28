@@ -43,15 +43,3 @@ class InfoContainer extends StatelessWidget {
   }
 }
 
-//This is how it should look:
-// SingleChildScrollView(
-// scrollDirection: Axis.horizontal,
-// child: Row(
-// children: [
-// Padding(
-// padding: const EdgeInsets.all(8.0),
-// child: InfoContainer(
-// title: 'Sleep Hygiene',
-// subtitle: 'Sleeping Techniques',
-// ),
-// ),
